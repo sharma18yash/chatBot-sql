@@ -3,6 +3,7 @@ import numpy
 from word2number import w2n
 nlp = spacy.load("en_core_web_md")
 from spacy.vocab import Vocab
+import mysql.connector
 vocab = Vocab()
 
 def NLPQuery(Nl_query):
@@ -100,7 +101,22 @@ def NLPQuery(Nl_query):
         qu = qu+i+" "
     print("QUERY")
     print(qu)
-    return qu
+    mydb = mysql.connector.connect(
+    host="35.193.192.1",
+    user="root",
+    password="sacsdc23r435ytgerf",
+    database="school"
+    )
+    print(mydb)
+    mycursor = mydb.cursor()
+    mycursor.execute(qu)
+    result = mycursor.fetchall()
+    out=""
+    for x in result:
+        out+=str(x)
+        out+="<br>"
+    print(out)
+    return out
 
 from flask import Flask, render_template, request
 
