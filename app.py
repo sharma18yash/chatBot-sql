@@ -9,13 +9,16 @@ vocab = Vocab()
 def NLPQuery(Nl_query):
     print(Nl_query)
     l = []
-    # Nl_query = "display name of all student"
-    # l1 = find_synonym("select")
+    if "names" in Nl_query:
+        Nl_query  = Nl_query.replace("names", "name")
+    if "students" in Nl_query:
+        Nl_query = Nl_query.replace("students", "student")
+
     doc = nlp(Nl_query)
     synonymSel = ['select', 'show', 'display', 'exhibit', 'demonstrate', 'display', 'prove', 'evince', 'indicate',
                'show up', 'present', 'reveal', 'evidence', ' choice', 'choose', ' pick', ' take', 'elect', 'prime', 'chosen',
                'cull', 'pick out', 'exclusive', 'exhibit', 'show', 'expose', 'presentation', 'reveal', 'demonstration', 'flaunt',
-               'demonstrate', 'exhibition', 'parade']
+               'demonstrate', 'exhibition', 'parade', 'give']
     synWher = ["where", "whither",  "whereabouts",  "wherein",  "wherever",  "location",  "locus",  "position",  "site",
                "spot",  "place", "having", "from", "whose", "teaching"]
     databases = ['student', 'teachers']
